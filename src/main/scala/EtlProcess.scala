@@ -27,9 +27,11 @@ object EtlProcess {
           (count, word) => count + (word -> (count.getOrElse(word, 0) + 1))
         }
       for ((k,v) <- counter) printf("%s : %d\n", k, v)
-    val pw2 = new PrintWriter("C:\\Users\\POORVA\\IdeaProjects\\ETLProcess\\File2.txt")
-      pw2.write(counter+"\n")
-    pw2.close()
+    val fw = new FileWriter("C:\\Users\\POORVA\\IdeaProjects\\ETLProcess\\File1.txt", true)
+    try {
+      fw.write( counter.toString+"\n")
+    }
+    finally fw.close()
 infile.close()
   }
 }
